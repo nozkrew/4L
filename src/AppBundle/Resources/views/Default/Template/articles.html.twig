@@ -1,0 +1,30 @@
+<section id="{{id}}">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">{{title}}</h2>
+          <hr class="my-4">
+        </div>
+      </div>
+      <div class="row">
+        {% for article in articles %}
+            <div class="col-lg-3 col-md-6">
+              <div class="service-box mt-5 mx-auto">
+                    {% if article.picture is not null %}
+                        <img src="{{asset('download/'~article.picture.site.slug~"/"~article.picture.name)}}" alt="{{article.picture.alt}}" class="img-fluid"  alt="Equipier 2">
+                    {% else %}
+                        <img src="{{asset('build/assets/img/article-no-image.jpg')}}" class="img-fluid"  alt="Photo article">
+                    {% endif %}
+                    <h5 class="mb-3 text-primary">{{article.title}}</h5>
+                    <p class="text-muted mb-0">{{ article.content|length > 200 ? article.content|slice(0, 200)|raw ~ '...' : article.content  }}</p>
+                    <p><a href="{{path('app_article_view', {"sitename":sitename, "slug":article.slug})}}">Lire la suite...</a></p>
+              </div>
+            </div>
+        {% endfor %}
+        <div class="col-lg-12 mx-auto text-center">
+            <a class="btn btn-dark btn-xl js-scroll-trigger" href="{{path('app_article_index', {"sitename":sitename})}}">Voir tous les articles</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>

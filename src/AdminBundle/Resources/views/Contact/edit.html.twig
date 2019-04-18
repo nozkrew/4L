@@ -1,0 +1,45 @@
+{% extends 'container_admin.html.twig' %}
+
+{% form_theme form  'form/fields.html.twig'  %}
+
+{% block title %}Gestion {{app.user.site.name}} - Contact{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{form_start(form)}}
+            <div class="form-group row">
+                {{form_label(form.name, "Nom (prénom) du contact", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+                <div class="col-sm-10">
+                    {{form_widget(form.name, {"attr":{"class":"form-control", "placeholder":"Ex: Association; Paul Dupont, ..."}})}}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{form_label(form.adresse, "Adresse", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+                <div class="col-sm-10">
+                    {{form_widget(form.adresse, {"attr":{"class":"form-control", "placeholder":"Ex: 18 rue des Lilas"}})}}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{form_label(form.email, "Email", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+                <div class="col-sm-10">
+                    {{form_widget(form.email, {"attr":{"class":"form-control", "placeholder":"Ex: equipage@contact.fr"}})}}
+                </div>
+            </div>
+            <div class="form-group row">
+                {{form_label(form.phone, "Téléphone", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+                <div class="col-sm-10">
+                    {{form_widget(form.phone, {"attr":{"class":"form-control", "placeholder":"Ex: 0612345678"}})}}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                     <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            </div>
+            {{form_rest(form)}}
+            {{form_end(form)}}
+        </div>
+    </div>
+
+{% endblock %}

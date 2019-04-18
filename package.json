@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@symfony/webpack-encore": "^0.22.4",
+    "bootstrap": "^4.2.1",
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "jquery": "^3.3.1",
+    "magnific-popup": "^1.1.0",
+    "node-sass": "^4.11.0",
+    "popper.js": "^1.14.6",
+    "sass-loader": "7.0.1",
+    "scrollreveal": "^4.0.5"
+  },
+  "dependencies": {
+    "chart.js": "^2.7.3",
+    "imagesloaded": "^4.1.4",
+    "jquery.easing": "^1.4.1",
+    "masonry-layout": "^4.2.2",
+    "npm": "^6.6.0"
+  }
+}

@@ -1,0 +1,21 @@
+{% extends 'container_admin.html.twig' %}
+
+{% block title %}Gestion {{app.user.site.name}} - Partenaires{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Etes vous sur de vouloir supprimer le partenaire {{partenaire.name}} ?</h4>
+            {{form_start(form)}}
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Oui</button>
+                     <a href="{{path('admin_partner_index')}}" class="btn btn-primary">Non</a>
+                </div>
+            </div>
+            {{form_rest(form)}}
+            {{form_end(form)}}
+        </div>
+    </div>
+
+{% endblock %}

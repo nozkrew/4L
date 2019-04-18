@@ -1,0 +1,49 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
+      ]
+    },
+    "index": {
+      "js": [
+        "/build/runtime.js",
+        "/build/index.js"
+      ],
+      "css": [
+        "/build/index.css"
+      ]
+    },
+    "post": {
+      "js": [
+        "/build/runtime.js",
+        "/build/post.js"
+      ],
+      "css": [
+        "/build/post.css"
+      ]
+    },
+    "photos": {
+      "js": [
+        "/build/runtime.js",
+        "/build/photos.js"
+      ],
+      "css": [
+        "/build/photos.css"
+      ]
+    },
+    "admin": {
+      "js": [
+        "/build/runtime.js",
+        "/build/admin.js"
+      ],
+      "css": [
+        "/build/admin.css"
+      ]
+    }
+  }
+}

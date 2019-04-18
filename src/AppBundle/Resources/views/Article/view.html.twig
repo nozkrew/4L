@@ -1,0 +1,52 @@
+{% extends 'AppBundle:Common:post.html.twig' %}
+
+{% block title %}4L Trophy - {{site.name}} - {{article.title}}{% endblock %}
+
+{% block titlePost %}{{article.title}}{% endblock %}
+
+{% block imageHeader %}
+    {% if article.picture is defined and article.picture is not null%}
+        style="background-image: url({{asset('download/'~article.picture.site.slug~"/"~article.picture.name)}});"
+    {% else %}
+        style="background-image: url({{asset('build/assets/img/article-no-image.jpg')}})";
+    {% endif %}
+{% endblock %}
+
+{% block container %}
+    <section>
+        <div class="container">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading">{{article.date|date('d/m/Y')}}</h2>
+                <hr class="my-4">
+            </div>
+            <div class="row">
+                {{article.content|raw|nl2br}}
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary">
+        <div class="container">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading text-white">Découvrez les autres articles</h2>
+                <hr class="my-4">
+            </div>
+            <div class="row">
+                {% for other in others %}
+                <div class="col-lg-3 col-md-6">
+                  <div class="service-box mt-5 mx-auto">
+                        {% if other.picture is not null %}
+                            <img src="{{asset('download/'~other.picture.site.slug~"/"~other.picture.name)}}" alt="{{other.picture.alt}}" class="img-fluid"  alt="Equipier 2">
+                        {% else %}
+                            <img src="{{asset('build/assets/img/article-no-image.jpg')}}" class="img-fluid"  alt="Photo article">
+                        {% endif %}
+                        <h5 class="mb-3 text-white">{{other.title}}</h5>
+                        <p class="text-faded mb-0">{{ other.content|length > 200 ? other.content|slice(0, 200)|raw ~ '...' : other.content  }}</p>
+                        <p><a class="text-white" href="{{path('app_article_view', {"sitename":site.slug, "slug":other.slug})}}">Lire la suite...</a></p>
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

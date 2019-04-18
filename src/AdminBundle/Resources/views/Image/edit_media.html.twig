@@ -1,0 +1,46 @@
+{% extends 'container_admin.html.twig' %}
+
+{% form_theme form  'form/fields.html.twig'  %}
+
+{% block title %}Gestion {{app.user.site.name}} - Images{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{form_start(form)}}
+            <div class="form-group row">
+                {{form_label(form.alt, "Donnez une courte description à votre image", {"label_attr":{"class":"col-sm-3 col-form-label"}})}}
+                <div class="col-sm-9">
+                    {{form_widget(form.alt, {"attr":{"class":"form-control", "placeholder":"Description de l'image"}})}}
+                </div>
+            </div>
+            {% if image.id is not null %}
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">
+                        Image actuelle
+                    </label>
+                    <div class="col-sm-9">
+                        <img src="{{asset('download/'~image.site.slug~"/"~image.name)}}" class="img-thumbnail" width="400" />
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.file is defined %}
+            <div class="form-group row">
+                {{form_label(form.file, "Image", {"label_attr":{"class":"col-sm-3 col-form-label"}})}}
+                <div class="col-sm-9">
+                    {{form_widget(form.file, {"attr":{"class":"form-control"}})}}
+                    {{form_errors(form.file)}}
+                </div>
+            </div>
+            {% endif %}
+            <div class="form-group row">
+                <div class="offset-sm-3 col-sm-9">
+                     <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            </div>
+            {{form_rest(form)}}
+            {{form_end(form)}}
+        </div>
+    </div>
+
+{% endblock %}

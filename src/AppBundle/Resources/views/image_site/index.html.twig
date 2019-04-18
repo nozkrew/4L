@@ -1,0 +1,42 @@
+{% extends 'AppBundle:Common:post.html.twig' %}
+
+{% block title %}4L Trophy - {{site.name}} - Photos{% endblock %}
+
+{% block titlePost %}Photos{% endblock %}
+
+
+{% block imageHeader %}
+    {% if site.headerImage is defined and site.headerImage is not null%}
+        style="background-image: url({{asset('download/'~site.slug~"/"~site.headerImage.name)}});"
+    {% else %}
+        style="background-image: url({{asset('build/assets/img/header.jpg')}})";
+    {% endif %}
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                  <h2 class="section-heading">Album de {{site.name}}</h2>
+                  <hr class="my-4">
+                </div>
+            </div>
+            <div class="grid popup-gallery">
+                <div class="grid-sizer"></div>
+                {% for photo in photos %}
+                    <a href="{{asset('download/'~photo.site.slug~"/"~photo.name)}}">
+                        <div class="grid-item">
+                            <img src="{{asset('download/'~photo.site.slug~"/"~photo.name)}}" />
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{asset('build/photos.js')}}"></script>
+{% endblock %}

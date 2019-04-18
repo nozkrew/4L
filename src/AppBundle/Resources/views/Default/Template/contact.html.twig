@@ -1,0 +1,45 @@
+<section class="bg-primary" id="{{id}}">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading text-white">{{title}}</h2>
+          <hr class="light my-4">
+        </div>
+        <div class="col-lg-8 mx-auto text-center">
+            <div class="text-faded mb-5 row">   
+                {% for contact in contacts %}
+                    <div class="{% if contacts|length == 3 %}
+                         col-lg-4
+                    {% elseif contacts|length == 2 %}
+                        col-lg-6
+                    {% elseif contacts|length == 1 %}
+                        col-lg-12
+                    {% endif %}">
+                        <p>{{contact.name}}</p>
+                        {% if contact.adresse is not null %}
+                            <p><i class="far fa-envelope"></i> {{contact.adresse}}</p>
+                        {% endif %}
+                        {% if contact.phone is not null %}
+                            <p><i class="fas fa-mobile-alt"></i> {{contact.phone}}</p>
+                        {% endif %}
+                        {% if contact.email is not null %}
+                            <p><i class="fas fa-at"></i> {{contact.email}}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+              </div>
+              <p class="mb-5 text-faded">
+                  {% if facebook is not null %}
+                      <a href="{{facebook}}" target="_blank" class="text-faded orange"><i class="fab fa-facebook-square fa-3x"></i></a>
+                  {% endif %}
+                  {% if twitter is not null %}
+                      <a href="{{twitter}}" target="_blank" class="text-faded orange"><i class="fab fa-twitter-square fa-3x"></i></a>
+                  {% endif %}
+                  {% if instagram is not null %}
+                      <a href="{{instagram}}" target="_blank" class="text-faded orange"><i class="fab fa-instagram fa-3x"></i></a>
+                  {% endif %}                  
+              </p>
+          </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,59 @@
+{% extends 'container_admin.html.twig' %}
+
+{% block title %}Gestion {{app.user.site.name}} - Contact{% endblock %}
+
+{% block content %}
+
+    
+    <h3>Vos contacts</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="{{path("admin_contact_edit")}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Ajouter un contact</a>
+        </div>
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Adresse</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Téléphone</th>
+                      <th scope="col">Modifier</th>
+                      <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                      <td>{{contact.name}}</td>
+                      <td>
+                          {% if contact.adresse is not null %}
+                            {{contact.adresse}}
+                          {% else %}
+                              -
+                          {% endif %}
+                      </td>
+                      <td>
+                          {% if contact.email is not null %}
+                            {{contact.email}}
+                          {% else %}
+                              -
+                          {% endif %}
+                      </td>
+                      <td>
+                          {% if contact.phone is not null %}
+                            {{contact.phone}}
+                          {% else %}
+                              -
+                          {% endif %}
+                      </td>
+                      <td><a href="{{path("admin_contact_edit_1", {'id':contact.id})}}" class="btn btn-sm btn-info" role="button"><i class="fa fa-edit"></i></a></td>
+                      <td><a href="{{path("admin_contact_delete", {'id':contact.id})}}" class="btn btn-sm btn-danger" role="button"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

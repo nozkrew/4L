@@ -1,0 +1,35 @@
+{% extends 'container_admin.html.twig' %}
+
+{% block title %}Gestion {{app.user.site.name}} - Partenaires{% endblock %}
+
+{% block content %}
+
+    
+    <h3>Nos partenaires</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="{{path('admin_partner_edit')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Ajouter un partenaire</a>
+        </div>
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Modifier</th>
+                      <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for partenaire in partenaires %}
+                    <tr>
+                      <td>{{partenaire.name}}</td>
+                      <td><a href="{{path("admin_partner_edit_1", {"id":partenaire.id})}}" class="btn btn-sm btn-info" role="button"><i class="fa fa-edit"></i></a></td>
+                      <td><a href="{{path("admin_partner_delete", {"id":partenaire.id})}}" class="btn btn-sm btn-danger" role="button"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

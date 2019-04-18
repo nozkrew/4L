@@ -1,0 +1,20 @@
+{% extends 'container_admin.html.twig' %}
+
+{% block title %}Gestion {{app.user.site.name}} - Article{% endblock %}
+
+{% block content %}
+
+    
+    <h3>Etes vous sûr de vouloir supprimer cet article ?</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>{{article.title}}</p>
+            {{form_start(form)}}
+            {{form_rest(form)}}
+            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i> Oui</button>
+            <a href="{{path('admin_article_index')}}" class="btn btn-primary">Non</a>
+            {{form_end(form)}}
+        </div>
+    </div>
+
+{% endblock %}

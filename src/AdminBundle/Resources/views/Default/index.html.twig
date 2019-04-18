@@ -1,0 +1,72 @@
+{% extends 'container_admin.html.twig' %}
+
+{% form_theme form  'form/fields.html.twig'  %}
+
+{% block title %}Gestion {{site.name}}{% endblock %}
+
+{% block nomEquipe %}{{site.name}}{% endblock %}
+
+{% block content %}
+        <small>Site disponible jusqu'au {{ site.endDate|date('d/m/Y')}}</small>
+        {{form_start(form)}}
+            <div class="row">
+        {% for user in form.users %}
+            <div class="col">
+                <h3>Equipier {{loop.index}}</h3>
+                <div class="form-group row">
+                    {{form_label(user.firstname, "Prénom", {"label_attr":{"class":"col-sm-3 col-form-label"}})}}
+                    <div class="col-sm-9">
+                        {{form_widget(user.firstname, {"attr":{"class":"form-control", "placeholder":"Prénom"}})}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{form_label(user.lastname, "Nom", {"label_attr":{"class":"col-sm-3 col-form-label"}})}}
+                    <div class="col-sm-9">
+                        {{form_widget(user.lastname, {"attr":{"class":"form-control", "placeholder":"Nom"}})}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{form_label(user.picture, "Image", {"label_attr":{"class":"col-sm-3 col-form-label"}})}}
+                    <div class="col-sm-9">
+                        {{form_widget(user.picture, {"attr":{"class":"form-control"}})}}
+                    </div>
+                </div>
+                    </div>
+        {% endfor %}
+        </div>
+        <h3>Fond d'écran</h3>
+        <div class="form-group row">
+            {{form_label(form.headerImage, "Fond d'écran", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-10">
+                {{form_widget(form.headerImage, {"attr":{"class":"form-control"}})}}
+            </div>
+        </div>
+        <h3>Réseaux sociaux</h3>
+        <div class="form-group row">
+            {{form_label(form.twitter, "Lien Twitter", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-10">
+                {{form_widget(form.twitter, {"attr":{"class":"form-control", "placeholder":"https://twitter.com/Equipage4LTrophy"}})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.facebook, "Lien Facebook", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-10">
+                {{form_widget(form.facebook, {"attr":{"class":"form-control", "placeholder":"https://fr-fr.facebook.com/Equipage4LTrophy/"}})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.instagram, "Lien Instagram", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-10">
+                {{form_widget(form.instagram, {"attr":{"class":"form-control", "placeholder":"https://www.instagram.com/Equipage4LTrophy/"}})}}
+            </div>
+        </div>
+        {{form_rest(form)}}
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+            </div>
+        </div>
+        
+        {{form_end(form)}}
+
+{% endblock %}
