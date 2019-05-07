@@ -3,12 +3,13 @@
 namespace AppBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
+use Twig\TwigTest;
 
 class instanceOfExtension extends AbstractExtension{
 
     public function getTests() {
         return [
-            'instanceof' =>  new \Twig_Function_Method($this, 'isInstanceof')
+            new TwigTest("instanceof", array($this, 'isInstanceof'))
         ];
     }
     

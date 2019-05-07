@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new \Symfony\WebpackEncoreBundle\WebpackEncoreBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new AdminBundle\AdminBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -2,9 +2,9 @@
     <div class="container-fluid p-0">
       <div class="row no-gutters popup-gallery">
        {% for photo in photos%}
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-3 col-sm-6">
           <a class="portfolio-box" href="{{asset('download/'~photo.site.slug~"/"~photo.name)}}">
-            <img class="img-fluid" src="{{asset('download/'~photo.site.slug~"/"~photo.name) | imagine_filter('my_thumb_filter')}}" alt="{{photo.alt}}">
+              <img class="img-fluid" src="{{asset('download/'~photo.site.slug~"/"~photo.name) | imagine_filter('my_thumb_filter')}}" alt="{{photo.alt}}" style="width:100%">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">

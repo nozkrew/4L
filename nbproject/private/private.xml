@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/src/AppBundle/Entity/Site.php</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/app/config/config.yml</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/src/UserBundle/Entity/User.php</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/src/AppBundle/Entity/Subscription.php</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/composer.json</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/app/AppKernel.php</file>
+            <file>file:/C:/Dev/wamp64/www/4ltrophy/app/config/security.yml</file>
+        </group>
     </open-files>
 </project-private>
