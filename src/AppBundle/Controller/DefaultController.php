@@ -10,12 +10,27 @@ use AppBundle\Entity\Site;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\ImageSite;
+use AppBundle\Entity\Subscription;
 
 /**
  * @Template()
  */
 class DefaultController extends Controller
 {
+    
+    /**
+     * @Route("/")
+     */
+    public function homeAction(){
+        
+        $subscriptions = $this->getSubscriptionRepository()->findAll();
+        
+        return array(
+            'subscriptions' => $subscriptions
+        );
+        
+    }
+    
     /**
      * @Route("/{sitename}")
      */
@@ -37,5 +52,9 @@ class DefaultController extends Controller
     
     private function getSiteRepository(){
         return $this->getDoctrine()->getRepository(Site::class);
+    }
+    
+    private function getSubscriptionRepository(){
+        return $this->getDoctrine()->getRepository(Subscription::class);
     }
 }

@@ -51,6 +51,11 @@ class User extends BaseUser
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $picture;
+    
+    /**
+     * @ORM\Column(name="charge_id", type="string", length=255, nullable=true)
+     */
+    private $chargeId;
 
 
     public function __construct()
@@ -167,5 +172,29 @@ class User extends BaseUser
     public function getSite()
     {
         return $this->site;
+    }
+
+    /**
+     * Set chargeId.
+     *
+     * @param string|null $chargeId
+     *
+     * @return User
+     */
+    public function setChargeId($chargeId = null)
+    {
+        $this->chargeId = $chargeId;
+
+        return $this;
+    }
+
+    /**
+     * Get chargeId.
+     *
+     * @return string|null
+     */
+    public function getChargeId()
+    {
+        return $this->chargeId;
     }
 }

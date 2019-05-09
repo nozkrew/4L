@@ -1,0 +1,13 @@
+{% extends 'base_home.html.twig' %}
+
+{% block body %}
+    <p>Bonjour</p>
+    
+    <h3>Abonnements</h3>
+    
+    <ul>
+    {% for subscription in subscriptions %}
+        <li>{{subscription.name}} - {{subscription.price}} € <a href="{{path('app_paiement_paiement', {'slug':subscription.slug})}}">Choisir</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
