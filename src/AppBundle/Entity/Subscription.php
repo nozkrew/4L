@@ -58,6 +58,13 @@ class Subscription
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
+    
+    /**
+     * @var Paiement
+     * 
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Paiement", mappedBy="subscription")
+     */
+    private $paiements;
 
 
     /**
@@ -205,5 +212,41 @@ class Subscription
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Add paiement.
+     *
+     * @param \AppBundle\Entity\Paiement $paiement
+     *
+     * @return Subscription
+     */
+    public function addPaiement(\AppBundle\Entity\Paiement $paiement)
+    {
+        $this->paiements[] = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Remove paiement.
+     *
+     * @param \AppBundle\Entity\Paiement $paiement
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePaiement(\AppBundle\Entity\Paiement $paiement)
+    {
+        return $this->paiements->removeElement($paiement);
+    }
+
+    /**
+     * Get paiements.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPaiements()
+    {
+        return $this->paiements;
     }
 }

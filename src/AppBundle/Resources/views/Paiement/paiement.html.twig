@@ -6,8 +6,8 @@
         {{form_start(form, {'attr':{'id':'payment-form'}})}}
             <h3>Votre Equipage</h3>
             <div class="form-group">
-                {{form_label(form.equipageName)}}
-                {{form_widget(form.equipageName, {'attr':{'class':'form-control', 'placeholder':"Nom de votre équipage"}})}}
+                {{form_label(form.siteName)}}
+                {{form_widget(form.siteName, {'attr':{'class':'form-control', 'placeholder':"Nom de votre équipage"}})}}
             </div>
             <h3>Equipier 1</h3>
             <div class="row">
@@ -26,17 +26,23 @@
             <h3>Equipier 2</h3>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    {{form_label(form.firstname)}}
-                    {{form_widget(form.firstname, {'attr':{'class':'form-control', 'placeholder':"Prénom"}})}}
+                    {{form_label(form.secondUserFirstname)}}
+                    {{form_widget(form.secondUserFirstname, {'attr':{'class':'form-control', 'placeholder':"Prénom"}})}}
                 </div>
                 <div class="form-group col-md-6">
-                    {{form_label(form.lastname)}}
-                    {{form_widget(form.lastname, {'attr':{'class':'form-control', 'placeholder':"Nom"}})}}
+                    {{form_label(form.secondUserLastname)}}
+                    {{form_widget(form.secondUserLastname, {'attr':{'class':'form-control', 'placeholder':"Nom"}})}}
                 </div>
             </div>
-            <div class="form-group">
-                {{form_label(form.email)}}
-                {{form_widget(form.email, {'attr':{'class':'form-control', 'placeholder':"nom.prenom@mail.com"}})}}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{form_label(form.secondUserUsername)}}
+                    {{form_widget(form.secondUserUsername, {'attr':{'class':'form-control', 'placeholder':"Pseudo"}})}}
+                </div>
+                <div class="form-group col-md-6">
+                    {{form_label(form.secondUserEmail)}}
+                    {{form_widget(form.secondUserEmail, {'attr':{'class':'form-control', 'placeholder':"nom.prenom@mail.com"}})}}
+                </div>
             </div>
             <h3>{{subscription.name}} - {{ subscription.price }} €</h3>
             <div class="form-group">

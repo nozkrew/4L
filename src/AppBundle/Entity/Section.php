@@ -48,7 +48,7 @@ class Section
     /**
      * @var SectionSite
      * 
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\SectionSite", mappedBy="section")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\SectionSite", mappedBy="section", cascade={"persist"})
      */
     private $sectionsSite;
     

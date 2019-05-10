@@ -5,8 +5,6 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class PaiementType extends AbstractType
 {
@@ -15,28 +13,28 @@ class PaiementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('equipageName', TextType::class, array(
-                    'label' => "Nom de l'équipage"
-                ))
-                ->add('firstname', TextType::class, array(
-                    'label' => "Prénom"
-                ))
-                ->add('lastname', TextType::class, array(
-                    'label' => "Nom"
-                ))
-                ->add('email', EmailType::class, array(
-                    'label' => "Email"
-                ))
-                ;
-    }
-    
-    /**
+        $builder->add('siteName', null, array(
+                'label' => "Nom de votre équipage"
+            ))
+                ->add('secondUserFirstname', null, array(
+                        'label' => "Prénom"
+                    ))
+                ->add('secondUserLastname', null, array(
+                        'label' => "Nom"
+                    ))
+                ->add('secondUserEmail', null, array(
+                        'label' => "Email"
+                    ))
+                ->add('secondUserUsername', null, array(
+                        'label' => "Pseudo"
+                    ));
+    }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => null
+            'data_class' => 'AppBundle\Entity\Paiement'
         ));
     }
 

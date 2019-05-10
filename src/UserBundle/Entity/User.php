@@ -53,9 +53,11 @@ class User extends BaseUser
     private $picture;
     
     /**
-     * @ORM\Column(name="charge_id", type="string", length=255, nullable=true)
+     * @var Paiement
+     * 
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Paiement", mappedBy="user")
      */
-    private $chargeId;
+    private $paiements;
 
 
     public function __construct()
@@ -196,5 +198,41 @@ class User extends BaseUser
     public function getChargeId()
     {
         return $this->chargeId;
+    }
+
+    /**
+     * Add paiement.
+     *
+     * @param \AppBundle\Entity\Paiement $paiement
+     *
+     * @return User
+     */
+    public function addPaiement(\AppBundle\Entity\Paiement $paiement)
+    {
+        $this->paiements[] = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Remove paiement.
+     *
+     * @param \AppBundle\Entity\Paiement $paiement
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePaiement(\AppBundle\Entity\Paiement $paiement)
+    {
+        return $this->paiements->removeElement($paiement);
+    }
+
+    /**
+     * Get paiements.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPaiements()
+    {
+        return $this->paiements;
     }
 }

@@ -20,6 +20,9 @@
                 <div class="col-lg-12 text-center">
                   <h2 class="section-heading">Album de {{site.name}}</h2>
                   <hr class="my-4">
+                  {% if photos|length == 0  %}
+                      <h3>Pas encore de photo</h3>
+                  {% endif %}
                 </div>
             </div>
             <div class="grid popup-gallery">

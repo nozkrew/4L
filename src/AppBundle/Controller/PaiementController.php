@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Subscription;
 use AppBundle\Form\PaiementType;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Section;
+use AppBundle\Entity\Paiement;
 
 /**
  * @Template()
@@ -17,8 +19,7 @@ class PaiementController extends Controller
     /**
      * @Route("/paiement/{slug}")
      */
-    public function paiementAction(Request$request, $slug){
-        
+    public function paiementAction(Request $request, $slug){        
         //si pas authentifier, on redirige vers login
         if(!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
             //voir comment on redirige
@@ -27,27 +28,41 @@ class PaiementController extends Controller
         
         $subscription = $this->getSubscriptionRepository()->findOneBySlug($slug);
         
-        $form = $this->createForm(PaiementType::class);
+        $paiement = new Paiement();
+        
+        $form = $this->createForm(PaiementType::class, $paiement);
 
         $form->handleRequest($request);
         
         //form valid
         if($form->isSubmitted() && $form->isValid()){
-        
-            // Set your secret key: remember to change this to your live secret key in production
-            // See your keys here: https://dashboard.stripe.com/account/apikeys
-            \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
+            
+            try{
+                \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
-            // Token is created using Checkout or Elements!
-            // Get the payment token ID submitted by the form:
-            $token = $request->request->get('stripeToken');
-            $charge = \Stripe\Charge::create([
-                'amount' => ($subscription->getPrice() * 100),
-                'currency' => 'eur',
-                'description' => 'Example charge',
-                'source' => $token,
-            ]);
-        
+                $token = $request->request->get('stripeToken');
+                $charge = \Stripe\Charge::create([
+                    'amount' => ($subscription->getPrice() * 100),
+                    'currency' => 'eur',
+                    'description' => 'Example charge',
+                    'source' => $token,
+                ]);
+                
+            }
+            catch(\Stripe\Error\Base $ex){
+                //erreur de paiment,
+                dump($ex);die;
+            }
+            finally {
+                $paiement->setUser($this->getUser());
+                $paiement->setChargeId($charge->id);
+                $paiement->setSubscription($subscription);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($paiement);
+                $em->flush();
+                
+                //success redirige
+            }
         }
         
         return array(

@@ -41,7 +41,7 @@ class Site
     /**
      * @var User
      * 
-     * @ORM\OneToMany(targetEntity="\UserBundle\Entity\User", mappedBy="site")
+     * @ORM\OneToMany(targetEntity="\UserBundle\Entity\User", mappedBy="site", cascade={"persist", "remove"})
      */
     private $users;
     
@@ -60,13 +60,6 @@ class Site
     private $createDate;
     
     /**
-     * @var \DateTime
-     * 
-     * @ORM\Column(name="endDate", type="datetime")
-     */
-    private $endDate;
-    
-    /**
      * @var Subscription
      * 
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Subscription", inversedBy="sites")
@@ -74,16 +67,9 @@ class Site
     private $subscription;
     
     /**
-     * @var Theme
-     * 
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Theme", inversedBy="sites")
-     */
-    private $theme;
-    
-    /**
      * @var SectionSite
      * 
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\SectionSite", mappedBy="site")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\SectionSite", mappedBy="site", cascade={"persist"})
      */
     private $sectionsSite;
     
@@ -212,30 +198,6 @@ class Site
     }
 
     /**
-     * Set endDate
-     *
-     * @param \DateTime $endDate
-     *
-     * @return Site
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Get endDate
-     *
-     * @return \DateTime
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
      * Add user
      *
      * @param \UserBundle\Entity\User $user
@@ -245,6 +207,7 @@ class Site
     public function addUser(\UserBundle\Entity\User $user)
     {
         $this->users[] = $user;
+        $user->setSite($this);
 
         return $this;
     }
@@ -325,30 +288,6 @@ class Site
     public function getSubscription()
     {
         return $this->subscription;
-    }
-
-    /**
-     * Set theme
-     *
-     * @param \AppBundle\Entity\Theme $theme
-     *
-     * @return Site
-     */
-    public function setTheme(\AppBundle\Entity\Theme $theme = null)
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    /**
-     * Get theme
-     *
-     * @return \AppBundle\Entity\Theme
-     */
-    public function getTheme()
-    {
-        return $this->theme;
     }
 
     /**

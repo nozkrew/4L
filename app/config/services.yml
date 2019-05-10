@@ -49,3 +49,8 @@ services:
         class: UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: user_user_registration }
+    app.subscriber.stripe_event:
+        class: AppBundle\EventSubscriber\StripeEventSubscriber
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_subscriber }

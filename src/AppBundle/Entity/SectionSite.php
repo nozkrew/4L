@@ -38,14 +38,14 @@ class SectionSite
     /**
      * @var Section
      * 
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Section", inversedBy="sectionsSite")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Section", inversedBy="sectionsSite", cascade={"persist"})
      */
     private $section;
     
     /**
      * @var Site
      * 
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Site", inversedBy="sectionsSite")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Site", inversedBy="sectionsSite", cascade={"persist"})
      */
     private $site;
 
@@ -118,6 +118,7 @@ class SectionSite
     public function setSection(\AppBundle\Entity\Section $section = null)
     {
         $this->section = $section;
+        $section->addSectionsSite($this);
 
         return $this;
     }
@@ -142,6 +143,7 @@ class SectionSite
     public function setSite(\AppBundle\Entity\Site $site = null)
     {
         $this->site = $site;
+        $site->addSectionsSite($this);
 
         return $this;
     }
