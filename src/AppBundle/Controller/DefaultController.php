@@ -3,33 +3,18 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Site;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\ImageSite;
-use AppBundle\Entity\Subscription;
+use AppBundle\Controller\CheckSiteController;
 
 /**
  * @Template()
  */
-class DefaultController extends Controller
+class DefaultController extends CheckSiteController
 {
-    
-    /**
-     * @Route("/")
-     */
-    public function homeAction(){
-        
-        $subscriptions = $this->getSubscriptionRepository()->findAll();
-        
-        return array(
-            'subscriptions' => $subscriptions
-        );
-        
-    }
     
     /**
      * @Route("/{sitename}")
@@ -42,6 +27,9 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('Site non trouvé');
         }
         
+        //verifie la date du site
+        $this->checkSite($site);
+        
         return array(
             'site' => $site,
             'photos' => $site->getPictures()->filter(function($entry){
@@ -52,9 +40,5 @@ class DefaultController extends Controller
     
     private function getSiteRepository(){
         return $this->getDoctrine()->getRepository(Site::class);
-    }
-    
-    private function getSubscriptionRepository(){
-        return $this->getDoctrine()->getRepository(Subscription::class);
     }
 }

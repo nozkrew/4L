@@ -7,12 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\Site;
+use AppBundle\Controller\CheckSiteController;
 
 /**
 * @Route("/{sitename}/article")
 * @Template()
 */
-class ArticleController extends Controller
+class ArticleController extends CheckSiteController
 {
     /**
      * @Route("/")
@@ -20,6 +21,8 @@ class ArticleController extends Controller
     public function indexAction($sitename){
         
         $site = $this->getSiteRepository()->findBySlug($sitename);
+        
+        $this->checkSite($site);
         
         //Liste des articles
         $articles = $this->getArticleRepository()->findBySite($sitename);
@@ -39,6 +42,8 @@ class ArticleController extends Controller
     public function viewAction($sitename, $slug){
         
         $site = $this->getSiteRepository()->findBySlug($sitename);
+        
+        $this->checkSite($site);
         
         $articles = $this->getArticleRepository()->findBySite($sitename);
         

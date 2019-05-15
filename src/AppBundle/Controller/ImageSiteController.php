@@ -2,17 +2,17 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\ImageSite;
 use AppBundle\Entity\Site;
+use AppBundle\Controller\CheckSiteController;
 
 /**
 * @Route("/{sitename}/photos")
 * @Template()
 */
-class ImageSiteController extends Controller
+class ImageSiteController extends CheckSiteController
 {
     /**
      * @Route("/")
@@ -20,6 +20,8 @@ class ImageSiteController extends Controller
     public function indexAction($sitename){
         
         $site = $this->getSiteRepository()->findBySlug($sitename);
+        
+        $this->checkSite($site);
         
         $photos = $this->getImageSiteRepository()->findBySite($site);
         

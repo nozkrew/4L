@@ -26,6 +26,12 @@ class PaiementController extends Controller
             return $this->redirect($this->generateUrl("fos_user_security_login"));
         }
         
+        //l'utilisateur a déja un site, il ne peux pas en prendre un 2eme
+        if($this->getUser()->getSite() !== null){
+            $this->get('session')->getFlashBag()->add('error', "Vous avez déja un site");
+            return $this->redirect($this->generateUrl('admin_default_index'));
+        }
+        
         $subscription = $this->getSubscriptionRepository()->findOneBySlug($slug);
         
         $paiement = new Paiement();
