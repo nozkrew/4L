@@ -128,7 +128,27 @@ class Site
      * @ORM\OneToOne(targetEntity="\AppBundle\Entity\Image")
      */
     private $headerImage;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="objectif", type="integer", length=10, nullable=true)
+     */
+    private $objectif;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="actual", type="integer", length=10, nullable=true)
+     */
+    private $actual;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="displayProgressBar", type="boolean")
+     */
+    private $displayProgressBar;
 
     /**
      * Get id
@@ -578,5 +598,77 @@ class Site
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Set objectif.
+     *
+     * @param int|null $objectif
+     *
+     * @return Site
+     */
+    public function setObjectif($objectif = null)
+    {
+        $this->objectif = $objectif;
+
+        return $this;
+    }
+
+    /**
+     * Get objectif.
+     *
+     * @return int|null
+     */
+    public function getObjectif()
+    {
+        return $this->objectif;
+    }
+
+    /**
+     * Set actual.
+     *
+     * @param int|null $actual
+     *
+     * @return Site
+     */
+    public function setActual($actual = null)
+    {
+        $this->actual = $actual;
+
+        return $this;
+    }
+
+    /**
+     * Get actual.
+     *
+     * @return int|null
+     */
+    public function getActual()
+    {
+        return $this->actual;
+    }
+
+    /**
+     * Set displayProgressBar.
+     *
+     * @param bool $displayProgressBar
+     *
+     * @return Site
+     */
+    public function setDisplayProgressBar($displayProgressBar)
+    {
+        $this->displayProgressBar = $displayProgressBar;
+
+        return $this;
+    }
+
+    /**
+     * Get displayProgressBar.
+     *
+     * @return bool
+     */
+    public function getDisplayProgressBar()
+    {
+        return $this->displayProgressBar;
     }
 }
