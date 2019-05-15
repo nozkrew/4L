@@ -25,7 +25,7 @@
                               </div>
                           {% endfor %}
                     </div>
-                    {% if site.displayProgressBar%}
+                    {% if site.displayProgressBar and (site.actual is not null and site.objectif is not null) %}
                     <div class="text-faded mb-5">
                         Notre objectif {{site.objectif}} €
                         <div class="progress" style="height: 15px;">

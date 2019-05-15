@@ -7,7 +7,7 @@
 {% block nomEquipe %}{{site.name}}{% endblock %}
 
 {% block content %}
-        <small>Site disponible jusqu'au {{ site.endDate|date('d/m/Y')}}</small>
+        <small>Site disponible jusqu'au {{ site.createDate|date_modify("+"~site.subscription.nbMonth~" month")|date('d/m/Y')}}</small>
         {{form_start(form)}}
             <div class="row">
         {% for user in form.users %}
@@ -39,6 +39,36 @@
             {{form_label(form.headerImage, "Fond d'écran", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
             <div class="col-sm-10">
                 {{form_widget(form.headerImage, {"attr":{"class":"form-control"}})}}
+            </div>
+        </div>
+      
+        <h3>Objectif financier</h3>
+        <div class="form-group row">
+            <div class="col-sm-2">Afficher la barre de progression</div>
+            <div class="col-sm-10">
+              <div class="form-check">
+                  {{form_widget(form.displayProgressBar, {"attr":{"class":"form-check-input"}})}}
+              </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.objectif, "Objectif", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-4">
+                <div class="input-group">
+                    {{form_widget(form.objectif, {"attr":{"class":"form-control", "placeholder":"Ex: 8000"}})}}
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+            {{form_label(form.actual, "Actuellement", {"label_attr":{"class":"col-sm-2 col-form-label"}})}}
+            <div class="col-sm-4">
+                <div class="input-group">
+                    {{form_widget(form.actual, {"attr":{"class":"form-control", "placeholder":"Ex: 2000"}})}}
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
             </div>
         </div>
         <h3>Réseaux sociaux</h3>

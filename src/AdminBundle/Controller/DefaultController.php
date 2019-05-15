@@ -6,16 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\ImageType;
 use AppBundle\Entity\SectionSite;
 use AppBundle\Form\SectionSiteType;
-use AppBundle\Entity\Partner;
-use UserBundle\Form\UserType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use AppBundle\Entity\Image;
-use AppBundle\Repository\ImageRepository;
-use AppBundle\Form\ImageChoiceType;
+use AdminBundle\Form\SiteAdminType;
 
 /**
 * @Route("/dashboard")
@@ -31,31 +24,7 @@ class DefaultController extends Controller
         
         $site = $this->getUser()->getSite();        
         
-        $form = $this->createFormBuilder($site)
-                ->add('users', CollectionType::class, array(
-                    'entry_type' => UserType::class,
-                    'entry_options' => array(
-                        'site' =>$site
-                    ),
-                    'by_reference' => false
-                ))
-                ->add('headerImage', ImageChoiceType::class, array(
-                    'query_builder' => function(ImageRepository $ir){
-                        return $ir->createQueryBuilder('i')
-                                ->where('i.site = :site')
-                                ->setParameter('site', $this->getUser()->getSite());
-                    }
-                ))
-                ->add('twitter', null, array(
-                    'required' => false
-                ))
-                ->add('facebook', null, array(
-                    'required' => false
-                ))
-                ->add('instagram', null, array(
-                    'required' => false
-                ))
-                ->getForm();
+        $form = $this->createForm(SiteAdminType::class, $site);
         
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isSubmitted()){
