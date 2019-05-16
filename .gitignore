@@ -51,4 +51,6 @@
 node_modules/
 
 nbproject/
+/web/download/*
+/web/media/*
 

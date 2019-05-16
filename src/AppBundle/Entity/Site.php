@@ -148,7 +148,7 @@ class Site
      *
      * @ORM\Column(name="displayProgressBar", type="boolean")
      */
-    private $displayProgressBar;
+    private $displayProgressBar = false;
 
     /**
      * Get id

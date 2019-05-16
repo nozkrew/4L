@@ -71,6 +71,7 @@ class StripeEventSubscriber implements EventSubscriberInterface{
         try{
             $this->em->flush();
         } catch (\Exception $ex) {
+            echo $ex->getMessage();
             //erreur génération site
         }
         

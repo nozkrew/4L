@@ -50,6 +50,10 @@ class ImageListener {
 
         $file = $entity->getFile();
 
+        if(!file_exists($this->getTargetDirectory()."/".$entity->getSite()->getSlug())){
+            mkdir($this->getTargetDirectory()."/".$entity->getSite()->getSlug());
+        }
+        
         // only upload new files
         if ($file instanceof UploadedFile) {
             $fileName = $this->uploader->upload($file);

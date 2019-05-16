@@ -75,6 +75,7 @@ class ImageController extends Controller
                 return $this->redirect($this->generateUrl("admin_image_index"));
                 
             } catch (\Exception $ex) {
+                dump($ex);die;
                 $this->get('session')->getFlashBag()->add('error', "Une erreur est survenue. Veuillez rééssayer");
             }
         }

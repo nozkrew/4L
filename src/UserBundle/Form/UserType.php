@@ -24,7 +24,8 @@ class UserType extends AbstractType
                         return $ir->createQueryBuilder('i')
                                 ->where('i.site = :site')
                                 ->setParameter('site', $options['site']);
-                    }
+                    },
+                    'required' => false
                 ))
                 ;
     }/**

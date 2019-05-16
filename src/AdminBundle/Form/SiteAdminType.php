@@ -31,7 +31,8 @@ class SiteAdminType extends AbstractType
                         return $ir->createQueryBuilder('i')
                                 ->where('i.site = :site')
                                 ->setParameter('site', $options['data']);
-                    }
+                    },
+                    'required' => false
                 ))
                 ->add('twitter', null, array(
                     'required' => false
