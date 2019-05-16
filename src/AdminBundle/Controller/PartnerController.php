@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Partner;
 use AppBundle\Form\PartnerType;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\ImageType;
-use AppBundle\Entity\Image;
 
 
 /**

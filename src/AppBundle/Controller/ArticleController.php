@@ -59,7 +59,10 @@ class ArticleController extends CheckSiteController
         }
         
         $others = array();
-        if(count($articles) < 4){
+        if(count($articles) == 1){
+            $keys = array(0);
+        }
+        elseif (count($articles) < 4){
             $keys = array_rand($articles, count($articles));
         }
         else{
