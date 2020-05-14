@@ -18,7 +18,7 @@ __` php bin\console doctrine:schema:update --force `__
 
 
 Pour importer les données nécéssaires au début : 
-__` mysql -u root -p 4L < db\4l.sql `__
+__` mysql -u root -p 4L < db\starter_data.sql `__
 
 Vous pourrez ainsi accéder au site : 
 https://127.0.0.1:8000/nom-du-site
