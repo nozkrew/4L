@@ -24,6 +24,7 @@ Vous pourrez ainsi accéder au site :
 https://127.0.0.1:8000/nom-du-site
 
 Pour la partie admin 
+-------------------
 https://127.0.0.1:8000/login
 
 Login : admin
