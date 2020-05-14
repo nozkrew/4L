@@ -1,7 +1,7 @@
-#4L
-
 Projet destinés à aider les participants du 4L trophy à se créer un site internet dans le but de pouvoir démarcher plus facilement des sponsors pour les aider dans leur aventures.
 Projet réalise avec Symfony
+
+![](https://github.com/nozkrew/4L/blob/master/README/index.PNG)
 
 Installation
 ===========
