@@ -20,7 +20,7 @@
     "scrollreveal": "^4.0.5"
   },
   "dependencies": {
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "imagesloaded": "^4.1.4",
     "jquery.easing": "^1.4.1",
     "masonry-layout": "^4.2.2",
